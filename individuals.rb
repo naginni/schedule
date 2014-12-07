@@ -8,7 +8,6 @@ class Individuals
 
    #instanciando las variables correspondientes
    def initialize
-      @fitness = 0
       # instancion el cromosoma optenido desde el archivo csv
       object = ReadFiles.new()
       @file_mediActi = object.readMediActi
@@ -31,8 +30,7 @@ class Individuals
 	 consultorios[1] = @file_consult[rand(@file_consult.length)]
 	 consultorios[2] = @file_consult[rand(@file_consult.length)]
 	 consultorios[3] = @file_consult[rand(@file_consult.length)]
-	 consultorios[4] = @file_consult[rand(@file_consult.length)]
-
+	 consultorios[4] = @file_consult[rand(@file_consult.length)] 
 	 @cromosoma[i] = consultorios
       end 
       return @cromosoma
@@ -40,14 +38,14 @@ class Individuals
 
    def getFitness
 	 fit = Fitness.new
-	 @fitness = fit.getFitness(self)
+	 fitness = fit.getFitness(self)
    end
 
    def getGene(index)
       @cromosoma[index]
    end
 
-   def setGene(index, valu)
+   def setGene(index, value)
       @cromosoma[index] = value
    end
 

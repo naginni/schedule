@@ -16,8 +16,7 @@ class ReadFiles
 
 	# hashe = {"l"=>row['L'], "m"=>row['M'], "mi"=>row['MI'], "j"=>row['J'], "v"=>row['V']}
 	# float_time = convertWeekToFloat(hashe)
-	 arraydate = [row['L'], row['M'], row['MI'], row['J'], row['V']]
-
+	 arraydate = [row['L'], row['M'], row['MI'], row['J'], row['V']] 
 	 @medicos << { "cc" => row['cc'], "name" =>row['nombre'], "lastname"=>row['apellido'], "fecha" => arraydate } 
       end
       return @medicos
@@ -39,7 +38,8 @@ class ReadFiles
    # se obtine el cromomosoma de forma aleatorio sin datos repetidos
    def readMediActi
       CSV.foreach("files/medi_activ.csv", :headers => true) do |row|
-	 @medi_acti << [{ "id" => row['id'], "medico" => row['medico_id'], "actividad" => row['actividad_id'], "consultorio" => "", "fecha" => "", "fitness" => 0 }]
+	 arraydate = [row['L'], row['M'], row['MI'], row['J'], row['V']]
+	 @medi_acti << { "id" => row['id'], "medico" => row['medico_id'], "actividad" => row['actividad_id'], "consultorio" => "", "fecha" => arraydate, "fitness" => 0 }
       end
       return @medi_acti
    end

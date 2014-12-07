@@ -5,20 +5,23 @@ require_relative 'readFile'
 	# es en el cromosoma para una ves finalizado el proceso se cuenta la cantidad de genes que cumple maximizar la funcion.
 
 class Fitness
+	   # se instancia el mejor fitness que sera comparado con el cada nuevo fitness este almacenara el mejor
+	   @@bestFitness=0
+	   # se instancia un atributo que almacenara el mejor cromosoma 
+           @@bestCromosoma=0
 
 	def initialize
 	   # get medicos info
 	   objFile = ReadFiles.new
-	   @medicoInfo = objFile.readMedicos 
+	   @medicoInfo = objFile.readMediActi 
 	end 
 
 	# funcion de evaluacion 
 	def getFitness(individual) 
 	   #se obtiene la longitud del objeto individual (cromosoma)
 	   size = (individual.size - 1)
-	   puts size
 	   # inicializo el valor del fitness
-	   fitness = [0]
+	   fitness = 0
 
 	   (0..size).each do |i|
 	      gene = individual.getGene(i)
@@ -28,16 +31,31 @@ class Fitness
 		    # si el consultorio del gene es igual al consultorio de los otros genes
 		    # se evalua que el horario sea diferente
 		    if(gene[x] == others[x])
-		       puts "#{j}  gene1 #{gene[x]} == gene2 #{others[x]}"
 		       # evaluar los horarios
-		      fitness[0] = fitness[0] + valueSchedule(i,j,x)
+		      fitness += valueSchedule(i,j,x)
 		    else
-		       fitness[0] = fitness[0] + 0.1
+		       fitness +=  1
 		    end
 		 end
 	      end
 	   end 
-	   return fitness[0]
+
+#(0..size).each do |i|
+#   gene = individual.getGene(i)
+#   gene.each do |cs|
+#      print " #{cs} | "
+#   end
+#   puts
+#end
+#puts "fitness =  #{fitness} \n"
+
+	   if @@bestFitness < fitness
+              puts "fitness =  #{@@bestFitness} \n"
+	      @@bestFitness = fitness
+	      setBestCromosoma(individual)
+	   end
+	      
+	   return fitness
 	end 
 
 	def valueSchedule(i,j,x)
@@ -47,34 +65,35 @@ class Fitness
 
 	   fitness = 0
 	   if (schedule_1 == "x" && schedule_2 == "x")
-	      fitness = fitness + 0.1
+	      fitness += 1
 	   end
 	   if ((schedule_1 == "x" && schedule_2 == "f") || (schedule_1 == "f" && schedule_2 == "x"))
-	      fitness = fitness + 0.1
+	      fitness += 1
 	   end
 	   if ((schedule_1 == "m" && schedule_2 == "a") || (schedule_1 == "a" && schedule_2 == "m"))
-	      fitness = fitness + 0.1
+	      fitness += 1
 	   end
 	   if ((schedule_1 == "m" && schedule_2 == "x") || (schedule_1 == "x" && schedule_2 == "m"))
-	      fitness = fitness + 0.1
+	      fitness += 1
 	   end
 	   if ((schedule_1 == "a" && schedule_2 == "x") || (schedule_1 == "x" && schedule_2 == "a"))
-	      fitness = fitness + 0.1
+	      fitness += 1
 	   end
 	   return fitness
 	end 
 
-	# guardo el mejor cromosoma para ser visualizado
-	def setBestCromosoma(indiv)
-		@bestCromosoma = indiv
-	end
-	def getBestCromosoma
-		@bestCromosoma
-	end
-
 	# get optimum fitness
         def getMaxFitness
-		maxFitness = lenghNQueens
-		return maxFitness
+	  return @bestFitness
 	end 
+
+	# guardo el mejor cromosoma para ser visualizado
+	def setBestCromosoma(indiv)
+	   @@bestCromosoma = indiv
+	end 
+
+	# obtener el mejor cromosoma 
+	def self.getBestCromosoma
+	 return  @@bestCromosoma
+	end
 end
