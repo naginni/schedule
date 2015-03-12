@@ -23,7 +23,7 @@ class Evolve
 	 indiv1 = @selection.tournameSelection(population)
 	 indiv2 = @selection.tournameSelection(population)
 	 # se realiza el cruce de los individuos (indiv1, indiv2)
-	# newIndiv = @crossing.crossingUniform(indiv1, indiv2)
+	 newIndiv = @crossing.crossingType(indiv1, indiv2)
 	 # se guardan los nuevos individuos generados por el cruce
 	 newPopulation.saveIndividual(i, indiv1)
 	 newPopulation.saveIndividual(i+1, indiv2) 
@@ -32,8 +32,7 @@ class Evolve
       # mutate population (mutacion por intercambio) 
       (0..(size-1)).each do |j|
 	 @mutation.doMutation(newPopulation.getIndividual(j))
-      end
-
+      end 
       return newPopulation
    end
 end
