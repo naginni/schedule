@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GeneticSchedule</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Raleway:600' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "style", :media => "all" %>
+  <%= javascript_include_tag :default %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <%= csrf_meta_tags %>
+</head>
+
+<body> 
+   <div class="container"> 
+   <% if current_user %> 
+     <% if current_user.perfil == "ROLE_ADMIN" %>
+       <%= render "layouts/admin_menu" %>
+     <% elsif  current_user.perfil == "ROLE_MEDICO"%>
+       <%= render "layouts/user_menu" %>
+     <% else %>
+	 <div class="alert alert-danger alert-dismissible" role="alert">
+	   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	   <strong>Error!</strong> Usted no tiene permisos para asceder a la aplicacion, comuniquese con el administrador.
+	 </div> 
+     <% end %>
+   <% end %>
+
+     <%= yield %>
+
+   </div> 
+
+   <div class="container-fluid"> 
+      <div class="row footer">
+	 <div class="col-sm-12">
+	 <p> GNU // Jefersson Castrillon Giron // Tesis </p>
+	 </div>
+      </div> 
+   </div> 
+</body> 
+
+</html>

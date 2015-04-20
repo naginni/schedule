@@ -1,0 +1,54 @@
+<div class="row">
+   <div class="col-xs-12">
+    <h3>Actividades pendientes del usuario: </h3>
+    <h4><%= current_user.nombre.titleize %>  <%= current_user.apellido.titleize %></h4>
+   </div> 
+
+ <div class="col-xs-12">
+   <table class="table table-striped"> 
+      <thead>
+	 <tr>
+	    <th style="width: 700px;">Cargo</th>
+	    <th style="text-align: center;">Lu</th>
+	    <th style="text-align: center;">Ma</th>
+	    <th style="text-align: center;">Mi</th>
+	    <th style="text-align: center;">Ju</th>
+	    <th style="text-align: center;">Vi</th>
+	    <th style="text-align: center;">Opcion</th>
+	 </tr>
+      </thead>
+      <tbody>
+       <% @medico_cargos_list.each do |row| %>
+	  <tr>
+	     <td><%= row.cargo.cups %></td>
+	     <td><%= row.monday %></td>
+	     <td><%= row.tuesday %></td>
+	     <td><%= row.wednesday %></td>
+	     <td><%= row.thursday %></td>
+	     <td><%= row.friday %></td>
+	     <td> </td>
+	  </tr>
+       <% end %>
+
+       <% @medico_cargos.each do |medico_cargo| %>
+           <%= form_for(medico_cargo, :html => {:class => 'form-horizontal'}) do |f| %>
+	     <tr> 
+	      <%= f.hidden_field :estado, :value => 1, :class => 'form-control' %>
+	      <td><%= medico_cargo.cargo.cups %></td> 
+		   
+	      <td><%= f.select  :monday, [['No Disponible','x'],['M. T. Manana','m'],['M. T. Tarde','a'],['T. Completo','f']],:class => 'form-control' %></td> 
+	      <td><%= f.select  :tuesday,  [['No Disponible','x'],['M. T. Manana','m'],['M. T. Tarde','a'],['T. Completo','f']],:class => 'form-control' %></td> 
+	      <td><%= f.select  :wednesday, [['No Disponible','x'],['M. T. Manana','m'],['M. T. Tarde','a'],['T. Completo','f']],:class => 'form-control' %></td> 
+	      <td><%= f.select  :thursday, [['No Disponible','x'],['M. T. Manana','m'],['M. T. Tarde','a'],['T. Completo','f']],:class => 'form-control' %></td> 
+	      <td><%= f.select  :friday, [['No Disponible','x'],['M. T. Manana','m'],['M. T. Tarde','a'],['T. Completo','f']],:class => 'form-control' %></td> 
+	      <td><%= f.submit "Aceptar", :class => 'btn btn-default pull-right' %></td> 
+	    </tr>
+         <% end %>
+       <% end %>
+      </tbody>
+   </table>
+ </div>
+   <div class="col-xs-12 pagination">
+      <%= will_paginate @medico_cargos %>
+   </div>
+</div>

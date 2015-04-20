@@ -40,15 +40,6 @@ class Fitness
 	      end
 	   end 
 
-#(0..size).each do |i|
-#   gene = individual.getGene(i)
-#   gene.each do |cs|
-#      print " #{cs} | "
-#   end
-#   puts
-#end
-#puts "fitness =  #{fitness} \n"
-
 	   if @@bestFitness < fitness
               puts "fitness =  #{@@bestFitness} \n"
 	      @@bestFitness = fitness

@@ -1,0 +1,55 @@
+<div class="row"> 
+   <div class="col-sm-12">
+       <h1>Listado consultorios</h1>
+  </div>
+
+  <div class="col-xs-0 col-sm-3"></div>
+  <div class="col-xs-0 col-sm-6">
+     <div class="row">
+       <div class="col-xs-offset-10 col-xs-2 pull-right">
+	 <%= link_to new_consultorio_path do %>
+	    <span class="glyphicon glyphicon-ok-sign btn-lg"></span>
+	 <% end %>
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-xs-12">
+	 <table class="table table-striped"> 
+	    <thead>
+	       <tr>
+		  <th>Nombre</th>
+		  <th>Codigo</th>
+		  <th>Detalles</th>
+		  <th>Editar</th>
+		  <th>Eliminar</th>
+	       </tr>
+	    </thead>
+	    <tbody>
+	     <% @consultorios.each do |consultorio| %>
+		<tr> 
+		 <td><%= consultorio.nombre %></td>
+		 <td><%= consultorio.numero %></td> 
+		 <td>
+		    <%= link_to consultorio do %>
+		       <span class="glyphicon glyphicon-eye-open"></span>
+		    <% end %>
+		</td> 
+		 <td>
+		    <%= link_to edit_consultorio_path(consultorio) do %>
+		       <span class="glyphicon glyphicon-edit"></span>
+		    <% end %>
+		</td> 
+		 <td> 
+		    <%= link_to consultorio, method: :delete, data: {confirm: "are you sure?"} do %>
+		       <span class="glyphicon glyphicon-remove-sign"></span>
+		    <% end %>
+		</td> 
+	       </tr>
+	     <% end %>
+	    </tbody>
+	 </table>
+       </div>
+     </div>
+  </div>
+  <div class="col-xs-0 col-sm-3"></div>
+</div> 

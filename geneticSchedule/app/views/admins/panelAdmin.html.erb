@@ -1,0 +1,42 @@
+<div class="row">
+   <div class="col-xs-12">
+    <h1>Listado De Cargos Relacionados Al Usuario</h1>
+   </div> 
+
+ <div class="col-xs-12">
+   <table class="table table-striped"> 
+      <thead>
+	 <tr>
+	    <th>Index</th>
+	    <th>Usuario</th>
+	    <th>Perfil</th>
+	    <th>Cargo</th>
+	    <th>Lu</th>
+	    <th>Ma</th>
+	    <th>Mi</th>
+	    <th>Ju</th>
+	    <th>Vi</th>
+	 </tr>
+      </thead>
+      <tbody>
+	 <% index = 0 %>
+       <% @user_cargo_works.each do |user_cargo_work| %>
+	  <tr> 
+	   <td><%= index += 1 %></td> 
+	   <td><%= user_cargo_work.user.nombre %> <%= user_cargo_work.user.apellido %></td>
+	   <td><%= user_cargo_work.user.perfil %></td> 
+	   <td><%= user_cargo_work.cargo.cups %></td> 
+	   <td><%= user_cargo_work.monday %></td> 
+	   <td><%= user_cargo_work.tuesday %></td> 
+	   <td><%= user_cargo_work.wednesday %></td> 
+	   <td><%= user_cargo_work.thursday %></td> 
+	   <td><%= user_cargo_work.friday %></td> 
+	 </tr>
+       <% end %>
+      </tbody>
+   </table>
+ </div>
+   <div class="col-xs-12 pagination">
+      <%= will_paginate @user_cargo_works %>
+   </div>
+</div>

@@ -1,0 +1,102 @@
+  <div class="col-xs-0 col-sm-12">
+     <div class="row">
+       <div class="col-xs-offset-10 col-xs-2 pull-right">
+	 <%= link_to users_path do %>
+	    <span class="glyphicon glyphicon-arrow-left btn-lg"></span>
+	 <% end %>
+       </div>
+     </div>
+     <div class="row">
+	<%= form_for(@user, :html => {:class => 'form-horizontal'}) do |f| %>
+
+	   <div class="col-xs-12">
+	      <% if @user.errors.any? %>
+		  <div class="alert alert-danger alert-dismissible" role="alert">
+		    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		    <strong>Error!</strong> <%= pluralize(@user.errors.count, "error") %> informacion no validad para ser guardada:
+		  </div>
+
+		  <% @user.errors.full_messages.each do |message| %>
+		     <div class="alert alert-danger alert-dismissible" role="alert">
+		       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		       <strong>Error!</strong> <%= message %>
+		     </div>
+		  <% end %>
+	      <% end %>
+           </div>
+	   
+	   <div class="col-xs-6">
+	      <div class="form-group">
+		   <%= f.label :cc, "Cedula", class: 'col-xs-2 control-label' %><br>
+		<div class="col-xs-9">
+		   <%= f.text_field :cc, :class => 'form-control' %>
+		</div>
+	      </div>
+	      <div class="form-group">
+		   <%= f.label :nombre, nil, class: 'col-sm-2 control-label' %><br>
+		<div class="col-sm-9">
+		   <%= f.text_field :nombre, :class => 'form-control' %>
+		</div>
+	      </div>
+	      <div class="form-group">
+		   <%= f.label :apellido, nil, class: 'col-sm-2 control-label' %><br>
+		<div class="col-sm-9">
+		   <%= f.text_field :apellido, :class => 'form-control' %>
+		</div>
+	      </div>
+	      <div class="form-group">
+		   <%= f.label :perfil, nil, class: 'col-sm-2 control-label' %><br>
+		<div class="col-sm-9">
+		   <%= f.select  :perfil,[['ROLE_ADMIN','ROLE_ADMIN'],['ROLE_MEDICO','ROLE_MEDICO'],['ROLE_NULL','ROLE_NULL']],:class => 'form-control' %>
+		</div>
+	      </div>
+	      <div class="form-group">
+		   <%= f.label :telefono, nil, class: 'col-sm-2 control-label' %><br>
+		<div class="col-sm-9">
+		   <%= f.text_field :telefono, :class => 'form-control' %>
+		</div>
+	      </div>
+           </div>
+	   <div class="col-xs-6 border_left">
+	      <div class="form-group">
+		   <%= f.label :direccion, nil, class: 'col-sm-2 control-label' %><br>
+		<div class="col-sm-9">
+		   <%= f.text_field :direccion, :class => 'form-control' %>
+		</div>
+	      </div>
+	      <div class="form-group">
+		   <%= f.label :especialidad, nil, class: 'col-sm-2 control-label' %><br>
+		<div class="col-sm-9">
+		   <%= f.text_field :especialidad, :class => 'form-control' %>
+		</div>
+	      </div>
+	      <div class="form-group">
+		   <%= f.label :email, nil, class: 'col-sm-2 control-label' %><br>
+		<div class="col-sm-9">
+		   <%= f.text_field :email, :class => 'form-control' %>
+		</div>
+	      </div>
+	      <div class="form-group">
+		   <%= f.label :password, nil, class: 'col-sm-2 control-label' %><br>
+		<div class="col-sm-9">
+		   <%= f.password_field :password, :class => 'form-control' %>
+		</div>
+	      </div>
+	      <div class="form-group">
+		   <%= f.label :password_confirmation, nil, class: 'col-sm-2 control-label' %><br>
+		<div class="col-sm-9">
+		   <%= f.password_field :password_confirmation, :class => 'form-control' %>
+		</div>
+	      </div>
+           </div>
+           <div class="col-xs-12">
+	      <div class="form-group">
+		<div class="col-xs-offset-10 col-xs-1">
+		   <%= f.submit "Aceptar", :class => 'btn btn-default pull-right' %>
+		</div>
+	      </div> 
+           </div>
+	 <% end %>
+     </div>
+  </div>
+

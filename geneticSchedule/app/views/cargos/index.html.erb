@@ -1,0 +1,52 @@
+<div class="row"> 
+   <div class="col-sm-12">
+       <h1>Listado actividades</h1>
+  </div>
+
+  <div class="col-xs-0 col-sm-3"></div>
+  <div class="col-xs-0 col-sm-6">
+     <div class="row">
+       <div class="col-xs-offset-10 col-xs-2 pull-right">
+	 <%= link_to new_cargo_path do %>
+	    <span class="glyphicon glyphicon-ok-sign btn-lg"></span>
+	 <% end %>
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-xs-12">
+	 <table class="table table-striped"> 
+	    <thead>
+	       <tr>
+		  <th>Codigo</th>
+		  <th>Nombre</th>
+		  <th>Detalles</th>
+		  <th>Editar</th>
+	       </tr>
+	    </thead>
+	    <tbody>
+	     <% @cargos.each do |cargo| %>
+		<tr> 
+		 <td><%= cargo.nombre %></td>
+		 <td><%= cargo.cups %></td> 
+		 <td>
+		    <%= link_to cargo do %>
+		       <span class="glyphicon glyphicon-eye-open"></span>
+		    <% end %>
+		</td> 
+		 <td>
+		    <%= link_to edit_cargo_path(cargo) do %>
+		       <span class="glyphicon glyphicon-edit"></span>
+		    <% end %>
+		</td> 
+	       </tr>
+	     <% end %>
+	    </tbody>
+	 </table>
+       </div>
+     </div>
+  </div>
+  <div class="col-xs-0 col-sm-3"></div>
+  <div class="col-xs-12 pagination">
+     <%= will_paginate @cargos %>
+  </div>
+</div> 

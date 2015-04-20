@@ -1,0 +1,88 @@
+<div class="row"> 
+   <div class="col-sm-12">
+       <h1>Detalles Del Usuario</h1>
+  </div>
+
+  <div class="col-xs-12">
+     <div class="row">
+       <div class="col-xs-offset-10 col-xs-2 pull-right">
+	 <%= link_to users_path do %>
+	    <span class="glyphicon glyphicon-arrow-left btn-lg"></span>
+	 <% end %>
+	 <%= link_to edit_user_path(@user) do %>
+	    <span class="glyphicon glyphicon-ok-sign btn-lg"></span>
+	 <% end %>
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-xs-6">
+	 <table class="table table-hover"> 
+	    <tbody>
+	       <tr>
+		  <td><strong>Nombre</strong></td>
+		  <td><%= @user.nombre %></td>
+	       </tr>
+	       <tr>
+		  <td><strong>Apellido</strong></td>
+		  <td><%= @user.apellido %></td>
+	       </tr>
+	       <tr>
+		  <td><strong>Cedula</strong></td>
+		  <td><%= @user.cc %></td>
+	       </tr>
+	       <tr>
+		  <td><strong>Perfil</strong></td>
+		  <td><%= @user.perfil %></td>
+	       </tr>
+	    </tbody>
+	 </table>
+      </div>
+       <div class="col-xs-6 border_left">
+	 <table class="table table-hover"> 
+	    <tbody>
+	       <tr>
+		  <td><strong>Especialidad</strong></td>
+		  <td><%= @user.especialidad %></td>
+	       </tr>
+	       <tr>
+		  <td><strong>Email</strong></td>
+		  <td><%= @user.email %></td>
+	       </tr>
+	       <tr>
+		  <td><strong>Direccion</strong></td>
+		  <td><%= @user.direccion %></td>
+	       </tr>
+	       <tr>
+		  <td><strong>Telefono</strong></td>
+		  <td><%= @user.telefono %></td>
+	       </tr>
+	    </tbody>
+	 </table>
+      </div>
+    </div>
+ </div>
+</div>
+
+   <% if current_user %> 
+     <% if current_user.perfil == "ROLE_ADMIN" %>
+	<div class="row">
+	   <div class="col-xs-12">
+	    <% flash.each do |name, msg| %>
+	       <div class="alert alert-<%= name %> alert-dismissible" role="alert">
+		    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		    <strong><%= name %>!</strong> <%= content_tag :span, msg, :id => "flash_#{name}" %> 
+		  </div>
+	    <% end %>
+	   </div>
+	   <div class="col-xs-12 col-sm-6">
+             <%= render "admins/cargos_no_user" %>
+	   </div>
+	   <div class="col-xs-12 col-sm-6">
+             <%= render "admins/cargos_in_user" %>
+	   </div>
+	</div>
+     <% elsif  current_user.perfil == "ROLE_MEDICO"%>
+     <% else %>
+       <%= redirect_to log_out_path %>
+     <% end %>
+   <% end %>

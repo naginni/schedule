@@ -1,0 +1,44 @@
+h1{
+   text-align: center;
+}
+
+.login_box{
+   margin-top: 40px;
+   margin-bottom: 100px;
+   border: 1px solid #E5E5E5;
+   -webkit-border-radius: 30px 30px 5px 5px;
+   border-radius: 30px 30px 5px 5px;
+   -webkit-box-shadow: 0px 10px 30px 0px rgba(50, 50, 50, 0.87);
+   -moz-box-shadow:    0px 10px 30px 0px rgba(50, 50, 50, 0.87);
+   box-shadow:         0px 10px 30px 0px rgba(50, 50, 50, 0.87);
+}
+.login_title{
+   background-color: #27356b;
+   color: white;
+   -webkit-border-radius: 30px 30px 5px 5px;
+   border-radius: 30px 30px 5px 5px;
+}
+
+.footer{
+   color: white;
+   text-align: center;
+   padding-top: 40px;
+   padding-bottom: 40px;
+   background: -moz-linear-gradient(top, #e5e5e5 0%, #535d84 100%); /* FF3.6+ */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e5e5e5), color-stop(100%,#535d84)); /* Chrome,Safari4+ */
+   background: -webkit-linear-gradient(top, #e5e5e5 0%,#535d84 100%); /* Chrome10+,Safari5.1+ */
+   background: -o-linear-gradient(top, #e5e5e5 0%,#535d84 100%); /* Opera 11.10+ */
+}
+.border_left{
+   border-left: 1px solid #27356b;
+}
+h1{
+   color: #27356b;
+   border-bottom: 1px solid #27356b;
+   text-align: left;
+   font-family: 'Raleway', sans-serif;
+}
+.pagination{
+   text-align: center;
+   color: #27356b;
+}

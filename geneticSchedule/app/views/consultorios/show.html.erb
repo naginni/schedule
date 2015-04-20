@@ -1,0 +1,37 @@
+
+<div class="row"> 
+   <div class="col-sm-12">
+       <h1>Detalles Del Consultorio</h1>
+  </div>
+
+  <div class="col-xs-0 col-sm-3"></div>
+  <div class="col-xs-0 col-sm-6">
+     <div class="row">
+       <div class="col-xs-offset-9 col-xs-3 pull-right">
+	 <%= link_to consultorios_path do %>
+	    <span class="glyphicon glyphicon-arrow-left btn-lg"></span>
+	 <% end %>
+	 <%= link_to edit_consultorio_path(@consultorio) do %>
+	    <span class="glyphicon glyphicon-ok-sign btn-lg"></span>
+	 <% end %>
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-xs-12">
+	 <table class="table table-hover"> 
+	    <tbody>
+	       <tr>
+		  <td><strong>Nombre</strong></td>
+		  <td><%= @consultorio.nombre %></td>
+	       </tr>
+	       <tr>
+		  <td><strong>Numero</strong></td>
+		  <td><%= @consultorio.numero %></td>
+	       </tr>
+	    </tbody>
+	 </table>
+       </div>
+     </div>
+  </div>
+  <div class="col-xs-0 col-sm-3"></div>
+</div> 

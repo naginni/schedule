@@ -1,0 +1,35 @@
+<div class="row">
+   <div class="col-xs-12">
+    <h3>Listado De Cargos Relacionados Al Usuario</h3>
+   </div> 
+
+ <div class="col-xs-12">
+   <table class="table table-striped"> 
+      <thead>
+	 <tr>
+	    <th>Codigo</th>
+	    <th>Nombre</th>
+	    <th>Opcion</th>
+	 </tr>
+      </thead>
+      <tbody>
+       <% @user_cargo_works.each do |user_cargo_work| %>
+	  <tr> 
+	   <td><%= user_cargo_work.cargo.nombre %></td>
+	   <td><%= user_cargo_work.cargo.cups %></td> 
+	   <td>
+	      <%= link_to destroy_user_cargo_path(user_cargo_work.id, @user) do %>
+		 <span class="btn btn-default">
+		    <span class="glyphicon glyphicon-remove"></span>
+		 </span>
+	      <% end %>
+	  </td> 
+	 </tr>
+       <% end %>
+      </tbody>
+   </table>
+ </div>
+   <div class="col-xs-12 pagination">
+      <%= will_paginate @user_cargo_works %>
+   </div>
+</div>

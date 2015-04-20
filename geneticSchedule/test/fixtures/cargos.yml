@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cups: MyString
+  nombre: MyString
+
+two:
+  cups: MyString
+  nombre: MyString

@@ -1,0 +1,36 @@
+
+<div class="row">
+   <div class="col-xs-12">
+    <h3>Listado De Cargos Disponibles Para El Usuario</h3>
+   </div> 
+
+ <div class="col-xs-12">
+   <table class="table table-striped"> 
+      <thead>
+	 <tr>
+	    <th>Codigo</th>
+	    <th>Nombre</th>
+	    <th>Opcion</th>
+	 </tr>
+      </thead>
+      <tbody>
+       <% @cargos.each do |cargo| %>
+	  <tr> 
+	   <td><%= cargo.nombre %></td>
+	   <td><%= cargo.cups %></td> 
+	   <td>
+	      <%= link_to add_users_cargos_path(@user, cargo) do %>
+	      <span class="btn btn-default">
+		 <span class="glyphicon glyphicon-ok"></span>
+	      </span>
+	      <% end %>
+	  </td> 
+	 </tr>
+       <% end %>
+      </tbody>
+   </table>
+ </div>
+   <div class="col-xs-12 pagination">
+      <%= will_paginate @cargos %>
+   </div>
+</div>

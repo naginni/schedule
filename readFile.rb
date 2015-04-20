@@ -13,7 +13,6 @@ class ReadFiles
    def mysqlConnect
       #databasename = 'trabajo_grado_development'
       databasename = 'TG_1'
-     # databasename = 'TG_2'
       #@connect = Mysql.new('hostname', 'username', 'password', 'database')
       connect = Mysql2::Client.new(:host => 'localhost', :username => 'root', :password => 'root', :database => databasename)
       return connect

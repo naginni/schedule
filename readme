@@ -1,0 +1,11 @@
+Instalacion del Algoritmo Genetico
+1. Se debe crear la base de datos que se encuentra en la carpeta sql
+2. Se debe configurar el nombre de la BD en el archivo readFile.rb 
+3. Para ejecutar el AG se debe correr el archivo main.rb
+
+Nota: se debe contar con el lenguaje de programacion Ruby 2.1.4 o superior instalado.
+
+
+Instalacion de la aplicacion 
+1. Configurar la BD que se encuentra en la carpeta config/database.yml
+2. Se debe contar con Ruby on Rail instalado y conocimientos basicos de este framework para la funcionalidad de la interfaz http://rubyonrails.org/

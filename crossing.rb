@@ -70,12 +70,7 @@ class Crossing
 	  son2[i] = mother[i]
 	end 
      end
-    # puts "hijo1 #{son1} hijo2 #{son2}"
-     # agregar los nuevos cromosomas a la poblacion
-    # (0..(length-1)).each do |i|
-#	father.setGene(i, son1[i])
-#	indiv2.setGene(i, son2[i]) 
-#     end 
+
      children = {"son_1" => son1, "son_2" => son2}
      return children
    end
@@ -133,15 +128,15 @@ class Crossing
      end
      # los genes que faltan se resuelven mediante los valores emparejados en las subcadenas iniciales
      (corte_1..corte_2).each do |i|
-	num = busquedadSecuencia(son1[i],son2)
+	num = busquedadSecuencial(son1[i],son2)
 	if num < 0
-	  num = busquedadSecuencia(0, son2)
+	  num = busquedadSecuencial(0, son2)
 	  son2[num] = son1[i]
 	end
 
-	num = busquedadSecuencia(son2[i],son1)
+	num = busquedadSecuencial(son2[i],son1)
 	if num < 0
-	  num = busquedadSecuencia(0, son1)
+	  num = busquedadSecuencial(0, son1)
 	  son1[num] = son2[i]
 	end 
      end
@@ -156,10 +151,10 @@ class Crossing
       position = -1
       i = 0
       children.each do |row|
-      puts "children #{row} gene #{gene}"
 	 # recorremos todo el arreglo
-	 if(row["id"] == gene["id"])
+	 if(row == gene)
 	    # comparamos el elemento en el arreglo con el buscado
+	   # puts "children #{children} gene #{gene}"
 	    position = i
 	    break
 	 end
