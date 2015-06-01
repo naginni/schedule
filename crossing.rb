@@ -10,7 +10,7 @@ class Crossing
       length = indiv1.size
 
       (0..4).each do |x| 
-	# guardo toda la info de las colum en un array 
+	# guardo toda la informacion de las columnas en un array 
 	father = []
 	mother = [] 
 	(0..(length-1)).each do |y|
@@ -22,13 +22,15 @@ class Crossing
 	    mother << gene2[x]
 	end
 
-	#children = crossingPMX(father, mother)
-        children = crossingUniform(father, mother)
+	# prubas para el uso del los dos operadores geneticos Cruce uniforma (CU) y Emparejamiento Parcial (PMX)
+	children = crossingPMX(father, mother)
+        #children = crossingUniform(father, mother)
 
+	# se optienen los decendientes de los padres, hijo uno y hijo dos.
 	son1 = children["son_1"]
-	son2 = children["son_2"]
+	son2 = children["son_2"] 
 
-
+	# este paso se encarga de reemplazar los nuevos genes obtenidos por los genes de los padres.
 	(0..(length-1)).each do |y|
 	   #obtengo los genes
 	    gene1 = indiv1.getGene(y)
@@ -48,9 +50,8 @@ class Crossing
    # realizando cruce uniforme
    def crossingUniform(father, mother)
       # obtengo la longitud de mi individuo
-      length = father.length
-
-      # se instancian los hisjos a obtener
+      length = father.length 
+      # se instancian los hijos a obtener
       son1 = Array.new(length,0)
       son2 = Array.new(length,0) 
       # se obtienen los puntos de corte
@@ -70,11 +71,10 @@ class Crossing
 	  son2[i] = mother[i]
 	end 
      end
-
+     # se retornan los decendientes.  
      children = {"son_1" => son1, "son_2" => son2}
      return children
-   end
-
+   end 
 
    # se generan los punto de corte
    def getPuntoCorte(size)
@@ -88,7 +88,7 @@ class Crossing
 	 end
       end
       return cortes 
-   end
+   end 
 
    # realizando cruce por emparejamiento parcial (PMX)
    def crossingPMX(father, mother)
@@ -107,8 +107,7 @@ class Crossing
       (corte_1..corte_2).each do |i|
 	 son1[i] = mother[i]
 	 son2[i] = father[i]
-      end
-      
+      end 
      # se agregan los genes de los padres que no se encuentran en el hijo
      (0..(length-1)).each do |i|
 	# si se encuentra el gene buscado este devuelve un -1 en la busquedad secuencial
@@ -143,8 +142,7 @@ class Crossing
 
       children = {"son_1" => son1, "son_2" => son2}
       return children
-   end
-
+   end 
 
    # se realiza la busquedad secuencial
    def busquedadSecuencial(gene, children)

@@ -4,7 +4,7 @@ class InitialPopulation
 
    def initialize( popuSize, initial)
       @individuals = Array.new(popuSize.to_i) 
-
+      # se crea la poblacion inicial
       if (initial)
 	 (0..(size()-1)).each do |i|
 	    newIndiv = Individuals.new()
@@ -15,14 +15,14 @@ class InitialPopulation
    end 
 
    def getFittest
-      # get the first cromosoma
+      # obtengo el primer cromosoma
       inidividual = @individuals[0]
 
       @individuals.each do |cromosoma|
-	 # get the best individuo whit the best fitness
+	 # obtengo el mejor idividuo dependiento del mejor fitness
 	 indiv_1 = inidividual.getFitness()
 	 indiv_2 = cromosoma.getFitness() 
-	 
+	 # si el individuo anterior es peor que el actual entonces lo reemplazo 
 	 if ( indiv_1 <= indiv_2 )
 	    inidividual = cromosoma
 	 end
@@ -30,17 +30,15 @@ class InitialPopulation
       return inidividual
    end
 
-   # get each individual 
+   # obtengo cada individuo 
    def getIndividual(index)
       return @individuals[index]
-   end
-
-   # save each individuals on the array
+   end 
+   # se guarda cada individuo en el array
    def saveIndividual(index, indiv)
       @individuals[index] = indiv
-   end
-
-   # get the length of the array individuals
+   end 
+   # optengo la longitud del arreglo de los individuos.
    def size
       @individuals.length
    end

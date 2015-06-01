@@ -73,16 +73,14 @@ class Fitness
 	   return fitness
 	end 
 
-	# get optimum fitness
+	# se obtiene el mejor fitness
         def getMaxFitness
 	  return @bestFitness
 	end 
-
-	# guardo el mejor cromosoma para ser visualizado
+	# se guarda el mejor cromosoma para ser visualizado
 	def setBestCromosoma(indiv)
 	   @@bestCromosoma = indiv
 	end 
-
 	# obtener el mejor cromosoma 
 	def self.getBestCromosoma
 	 return  @@bestCromosoma

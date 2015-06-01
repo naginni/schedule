@@ -13,8 +13,7 @@ class Mutation
 	#se obtiene la longitud del objeto individual (cromosoma)
 	size = (cromosome.size - 1)
 
-	 (0..4).each do |x|
-
+	 (0..4).each do |x| 
 	   # guardo toda la info de las colum en un array 
            array = [] 
 	   (0..size).each do |y|

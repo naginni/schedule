@@ -8,14 +8,14 @@ class Selection
 
    # metodo de seleccion de los cromosomas por torneo
    def tournameSelection(population)
-      # create a tournament population
+      # se crea un torneo para la poblacion
       tournament =  InitialPopulation.new(@tournamentSize, false)
-      # for each place in the tournament get a random individual 
+      # para cada lugar en el torneo se obtiene un individuo de forma aleatoria 
       (0..(@tournamentSize-1)).each do |i| 
          randomId = rand(population.size)
 	 tournament.saveIndividual(i, population.getIndividual(randomId))
       end 
-      # obtengo el mejor cromosoma de mi seleccion por torneo, este lo preparo para ser cruzado
+      # se obtiene el mejor cromosoma de la seleccion por torneo, este se prepara para ser cruzado
       cromosoma = tournament.getFittest
       # retorno el mejor cromosoma
       return cromosoma
