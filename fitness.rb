@@ -6,50 +6,49 @@ require_relative 'readFile'
 
 class Fitness
 	   # se instancia el mejor fitness que sera comparado con el cada nuevo fitness este almacenara el mejor
-	   @@bestFitness=0
+	   @bestFitness=0
 	   # se instancia un atributo que almacenara el mejor cromosoma 
-           @@bestCromosoma=0
+		 @bestCromosoma=0
+
+	   # get medicos info
+	   @medicoInfo = ReadFiles.new.readMediActi 
 
 	def initialize
-	   # get medicos info
-	   objFile = ReadFiles.new
-	   @medicoInfo = objFile.readMediActi 
 	end 
 
 	# funcion de evaluacion 
-	def getFitness(individual) 
-	   #se obtiene la longitud del objeto individual (cromosoma)
-	   size = (individual.size - 1)
-	   # inicializo el valor del fitness
-	   fitness = 0
+	def self.getFitness(individual) 
+		#se obtiene la longitud del objeto individual (cromosoma)
+		size = (individual.size - 1)
+		# inicializo el valor del fitness
+		fitness = 0
 
-	   (0..size).each do |i|
-	      gene = individual.getGene(i)
-	      (i+1..size).each do |j|
-		 others =individual.getGene(j)
-		 (0..4).each do |x|
-		    # si el consultorio del gene es igual al consultorio de los otros genes
-		    # se evalua que el horario sea diferente
-		    if(gene[x] == others[x])
-		       # evaluar los horarios
-		      fitness += valueSchedule(i,j,x)
-		    else
-		       fitness +=  1
-		    end
-		 end
-	      end
-	   end 
+		(0..size).each do |i|
+			gene = individual.getGene(i)
+			(i+1..size).each do |j|
+				others =individual.getGene(j)
+				(0..4).each do |x|
+					# si el consultorio del gene es igual al consultorio de los otros genes
+					# se evalua que el horario sea diferente
+					if(gene[x] == others[x])
+						# evaluar los horarios
+						fitness += valueSchedule(i,j,x)
+					else
+						fitness +=  1
+					end
+				end
+			end
+		end 
 
-	   if @@bestFitness < fitness
-              puts "fitness =  #{@@bestFitness} \n"
-	      @@bestFitness = fitness
-	      setBestCromosoma(individual)
-	   end
-	      
-	   return fitness
+		if getMaxFitness() < fitness
+			puts "fitness =  #{getMaxFitness()} \n"
+			setMaxFitness(fitness)
+			setBestCromosoma(individual)
+		end 
+		return fitness
 	end 
 
-	def valueSchedule(i,j,x)
+	def self.valueSchedule(i,j,x)
 
 	   schedule_1 = @medicoInfo[i]["fecha"][x]
 	   schedule_2 = @medicoInfo[j]["fecha"][x] 
@@ -74,15 +73,19 @@ class Fitness
 	end 
 
 	# se obtiene el mejor fitness
-        def getMaxFitness
+	def self.setMaxFitness(best)
+	   @bestFitness = best
+	end 
+
+	def self.getMaxFitness
 	  return @bestFitness
 	end 
 	# se guarda el mejor cromosoma para ser visualizado
-	def setBestCromosoma(indiv)
-	   @@bestCromosoma = indiv
+	def self.setBestCromosoma(indiv)
+	   @bestCromosoma = indiv
 	end 
 	# obtener el mejor cromosoma 
 	def self.getBestCromosoma
-	 return  @@bestCromosoma
+	 return  @bestCromosoma
 	end
 end

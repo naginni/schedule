@@ -14,21 +14,21 @@ class InitialPopulation
       end 
    end 
 
-   def getFittest
-      # obtengo el primer cromosoma
-      inidividual = @individuals[0]
+	def getFittest
+		# obtengo el primer cromosoma
+		inidividual = @individuals[0]
 
-      @individuals.each do |cromosoma|
-	 # obtengo el mejor idividuo dependiento del mejor fitness
-	 indiv_1 = inidividual.getFitness()
-	 indiv_2 = cromosoma.getFitness() 
-	 # si el individuo anterior es peor que el actual entonces lo reemplazo 
-	 if ( indiv_1 <= indiv_2 )
-	    inidividual = cromosoma
-	 end
-      end
-      return inidividual
-   end
+		@individuals.each do |cromosoma|
+			# obtengo el mejor idividuo dependiento del mejor fitness
+			indiv_1 = inidividual.getFitnessIndiv()
+			indiv_2 = cromosoma.getFitnessIndiv() 
+			# si el individuo anterior es peor que el actual entonces lo reemplazo 
+			if ( indiv_1 <= indiv_2 )
+				inidividual = cromosoma
+			end
+		end
+		return inidividual
+	end
 
    # obtengo cada individuo 
    def getIndividual(index)
